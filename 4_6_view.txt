@@ -1,0 +1,9 @@
+create view pass_in_trip_view as
+select pass_in_trip.id, passenger.name, trip.plane, trip.town_from, trip.town_to, trip.time_out, trip.time_in, pass_in_trip.place
+   from passenger
+   join pass_in_trip
+     on passenger.id=pass_in_trip.passenger
+   join trip
+     on pass_in_trip.trip = trip.id;
+
+select * from pass_in_trip_view;

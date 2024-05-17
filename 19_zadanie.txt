@@ -1,0 +1,30 @@
+create view min_trips as 
+select name, count(*) from company
+join trip on company.id = trip.company 
+group by name 
+order by count(*);
+
+delete
+from company 
+where company.name in (select name from min_trips
+where min_trips.count = (select min(min_trips.count) from min_trips));
+
+----------------------------
+
+delete
+from company
+where company.name in
+(select name from
+	(select name, count(*) as kolvo from company
+	join trip on company.id = trip.company 
+	group by name 
+	order by kolvo)
+	
+where kolvo = (select min(kolvo) from 
+
+	(select name, count(*) as kolvo from company
+	join trip on company.id = trip.company 
+	group by name 
+	order by kolvo)
+	
+	));

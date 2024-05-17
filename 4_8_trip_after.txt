@@ -1,0 +1,12 @@
+CREATE OR REPLACE FUNCTION get_trips(trip_after timestamp without time zone) RETURNS SETOF trip AS $$
+BEGIN
+	RETURN QUERY
+	select * from trip
+	where time_out > trip_after;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_trips('1900-01-01 15:00:00');
+
+select * from trip
+	where time_out > '1900-01-01 15:00:00';

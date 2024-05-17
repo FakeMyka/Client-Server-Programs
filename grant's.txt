@@ -1,0 +1,37 @@
+revoke CONNECT ON DATABASE avia from PUBLIC;
+
+revoke all privileges on database avia from user_db;
+
+grant CONNECT ON DATABASE avia to user_db;
+
+revoke USAGE ON SCHEMA public from PUBLIC;
+
+grant usage on schema public to user_db;
+
+-----------------------------------------
+
+REVOKE ALL ON TABLE public.trip FROM user_db;
+grant select on public.trip to user_db;
+
+REVOKE ALL ON TABLE public.company FROM user_db;
+grant select on public.company to user_db;
+
+REVOKE ALL ON TABLE public.passenger FROM user_db;
+grant select on public.passenger to user_db;
+
+REVOKE ALL ON TABLE public.pass_in_trip FROM user_db;
+grant select on public.pass_in_trip to user_db;
+
+REVOKE ALL privileges ON table public.pass_in_trip_view FROM user_db;
+grant select on table public.pass_in_trip_view to user_db;
+
+-------------------------------------------
+
+grant temporary ON DATABASE avia to PUBLIC;
+
+revoke CONNECT ON DATABASE avia from user_db;
+
+revoke temporary ON DATABASE avia from user_db;
+
+revoke temporary ON DATABASE avia from PUBLIC;
+
