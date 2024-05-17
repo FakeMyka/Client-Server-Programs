@@ -1,28 +1,30 @@
 create view min_trips as 
-select name, count(*) from company
+select name, count(*) from company 
 join trip on company.id = trip.company 
 group by name 
 order by count(*);
 
-delete
+delete 
 from company 
-where company.name in (select name from min_trips
+where company.name in (select name from min_trips 
 where min_trips.count = (select min(min_trips.count) from min_trips));
 
-----------------------------
+---------------------------- Сверху и снизу одно и тоже, просто сверху 
+---------------------------- это сделано с помощью вида, а снизу
+---------------------------- одной командой
 
-delete
-from company
-where company.name in
-(select name from
-	(select name, count(*) as kolvo from company
+delete 
+from company 
+where company.name in 
+(select name from 
+	(select name, count(*) as kolvo from company 
 	join trip on company.id = trip.company 
 	group by name 
 	order by kolvo)
 	
 where kolvo = (select min(kolvo) from 
 
-	(select name, count(*) as kolvo from company
+	(select name, count(*) as kolvo from company 
 	join trip on company.id = trip.company 
 	group by name 
 	order by kolvo)

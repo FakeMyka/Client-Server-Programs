@@ -1,20 +1,20 @@
 select * from pass_in_trip;
 
-select * from pass_in_trip
-join trip on pass_in_trip.trip = trip.id
+select * from pass_in_trip 
+join trip on pass_in_trip.trip = trip.id 
 where town_from = 'Moscow';
 
-delete from pass_in_trip
-where trip in (select id from trip
+delete from pass_in_trip 
+where trip in (select id from trip 
 where town_from = 'Moscow');
 
 ------------------------------
 
 select * from trip;
 
-select * from trip
+select * from trip 
 where town_from = 'Moscow';
 
-delete from trip
+delete from trip 
 where town_from = 'Moscow';
 
